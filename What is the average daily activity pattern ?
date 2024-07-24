@@ -1,0 +1,11 @@
+# Calculate average number of steps per interval across all days
+average_steps_per_interval <- data %>%
+  group_by(interval) %>%
+  summarise(avg_steps = mean(steps, na.rm = TRUE))
+
+# Time series plot of average number of steps taken
+ggplot(average_steps_per_interval, aes(x = interval, y = avg_steps)) +
+  geom_line() +
+  labs(title = "Average Daily Activity Pattern",
+       x = "5-minute Interval",
+       y = "Average Number of Steps")
