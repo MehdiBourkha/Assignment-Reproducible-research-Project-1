@@ -1,0 +1,2 @@
+max_interval <- average_steps_per_interval[which.max(average_steps_per_interval$avg_steps), ]
+max_interval
