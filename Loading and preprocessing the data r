@@ -1,0 +1,12 @@
+# Load necessary packages
+library(dplyr)
+library(ggplot2)
+
+# Load the data
+data <- read.csv("activity.csv", header = TRUE, stringsAsFactors = FALSE)
+
+# Preview the first few rows of the dataset
+head(data)
+
+# Check for missing values
+summary(data)
