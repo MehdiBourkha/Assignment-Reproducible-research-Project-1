@@ -1,0 +1,24 @@
+# Calculate total number of missing values
+total_missing <- sum(is.na(data$steps))
+
+# Create new dataset with missing values imputed using mean for that interval
+data_imputed <- data %>%
+  group_by(interval) %>%
+  mutate(steps = ifelse(is.na(steps), mean(steps, na.rm = TRUE), steps))
+
+# Recalculate total steps per day with imputed data
+total_steps_per_day_imputed <- data_imputed %>%
+  group_by(date) %>%
+  summarise(total_steps = sum(steps))
+
+# Histogram of total number of steps taken each day (after imputation)
+hist(total_steps_per_day_imputed$total_steps, 
+     main = "Histogram of Total Number of Steps Taken Each Day (Imputed)",
+     xlab = "Total Steps per Day")
+
+# Mean and median of total number of steps taken per day (after imputation)
+mean_steps_imputed <- mean(total_steps_per_day_imputed$total_steps)
+median_steps_imputed <- median(total_steps_per_day_imputed$total_steps)
+
+mean_steps_imputed
+median_steps_imputed
